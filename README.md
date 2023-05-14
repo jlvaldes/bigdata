@@ -43,7 +43,19 @@ El flujo completo de trabajo involucra todos estos componentes en un proceso ite
    - Una vez completado el proceso de clonación, el repositorio estará disponible en Visual Studio y podrás ver y modificar los archivos en el explorador de soluciones.
    - Recuerda que también puedes clonar un repositorio Git desde la línea de comandos utilizando el comando 
       ```git clone https://github.com/jlvaldes/bigdata.git```
-     
+      
+      
+## Preparando el entorno de trabajo
+   - Vamos a trabajar con un entorno `conda`, así que lo primero que vamos hacer es crear un entorno:
+   ```conda create -n bigdata-env python=3.10```
+   La versión de python con la que vamos a trabajar es la `3.10`
+   
+   - Activamos el entorno
+   ```conda activate bigdata-env```
+   
+   - Instalamos todos los paquetes que necesitamos para trabajar. En este caso ejecutaremos unscriot en `bash` que se encuentra en el mismo proyecto. Desde la misma terminal del Visual Studio Code, ejecutamos:
+   ```bash -i conda-env-init.sh```
+   
 
 
 ## Contribuciones
