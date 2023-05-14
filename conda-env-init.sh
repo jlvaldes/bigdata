@@ -1,10 +1,8 @@
 #!/bin/bash
+# conda create -n big-data python=3.10
 
-# Crear el entorno virtual
-conda create --name bigdata-env python=3.10
-
-# Activar el entorno virtual
-conda activate bigdata-env
-
-#instalar pandas
-conda install pandas
+# bash -i conda-env-init.sh   
+conda install -c conda-force python=3.10
+conda install -c conda-forge pandas
+conda install -c conda-forge prefect
+conda install -c conda-force ipykernel
