@@ -32,6 +32,22 @@ La solución general se compone de los siguientes componentes:
 
 El flujo completo de trabajo involucra todos estos componentes en un proceso iterativo, donde se pueden realizar ajustes y mejoras a medida que se avanza en el análisis de datos.
 
+## Guída para comenzar a trabajar desde Visual Studio
+1. Clonar el repositorio:
+   - Abre Visual Studio.
+   - Haz clic en "File" (Archivo) en la barra de menú y selecciona "Open" (Abrir).
+   - Selecciona "Clone Repository" (Clonar repositorio) en el menú desplegable.
+   - En la ventana emergente "Clone a Repository" (Clonar un repositorio), ingresa la URL del repositorio que deseas clonar en el campo "Repository URL" (URL del repositorio).
+   - Puedes elegir la ubicación local donde deseas clonar el repositorio en el campo "Local Path" (Ruta local). También puedes seleccionar la opción "Create a new project" (Crear un nuevo proyecto) si deseas crear un nuevo proyecto con el repositorio clonado.
+   - Haz clic en "Clone" (Clonar) para comenzar el proceso de clonación del repositorio.
+   - Una vez completado el proceso de clonación, el repositorio estará disponible en Visual Studio y podrás ver y modificar los archivos en el explorador de soluciones.
+   - Recuerda que también puedes clonar un repositorio Git desde la línea de comandos utilizando el comando 
+      ```git clone <URL_del_repositorio>```
+     
+2. 
+
+
+
 ## Contribuciones
 
 ¡Estamos abiertos a contribuciones y sugerencias para mejorar este proyecto! Si tienes ideas o mejoras, no dudes en hacer un pull request o abrir un issue en el repositorio del proyecto.
