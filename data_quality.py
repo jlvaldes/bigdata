@@ -6,6 +6,7 @@ def prepare_data(df: pd.DataFrame):
     if not isinstance(df, pd.DataFrame):
         raise TypeError("Se espera un objeto DataFrame de pandas")
     
+    #Easte es un comentario
 
     df_cleaned = pd.DataFrame()
 
