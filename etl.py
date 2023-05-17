@@ -1,5 +1,6 @@
 from prefect import flow, task
-from data_extraction import extract_data
+from data_extraction import extract_book_data
+from data_extraction import extract_book_rating
 from data_quality import prepare_data
 from data_transformation import transform_data
 from data_load import load_data
@@ -8,10 +9,16 @@ import pandas as pd
 
 @task(name='Data extraction process')
 def task_extract_data():
-    print('Extrayendo datos del origen...')
-    df = extract_data()
-    print('Extracción finalizada...')
-    return df
+    print('Extrayendo datos de los libros...')
+    df_data = extract_book_data()
+    print('Extracción de datos libros finalizada...')
+
+
+    print('Extrayendo datos de rating de los libros...')
+    df_dating = extract_book_rating()
+    print('Extracción de datos de rating finalizada...')
+
+    return df_data, df_dating
 
 
 @task(name='Data quality process')
