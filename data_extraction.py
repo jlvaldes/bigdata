@@ -15,6 +15,7 @@ def extract_book_data( percent = PERCENT):
     df_data = pd.read_csv(ruta_data_absoluta)
     print('Dataset de libros cargado en memoria...')
 
+
     if PERCENT < 100:
         print(f'Seleccionando muestra aleatoria del {PERCENT}%')
         num_filas_seleccion = int(len(df_data) * (PERCENT / 100))
@@ -28,6 +29,25 @@ def extract_book_data( percent = PERCENT):
     df_new.to_csv(CSV_BOOK_DATA_CLEANED_PATH)
     print('Datset limpio...')
     return df_new
+
+
+def func_dani():
+    #leer el csv original CSV_BOOK_DATA_PATH
+    df = pd.read_csv(CSV_BOOK_DATA_PATH)
+    #eliminiar del df las columnas que no usamos
+    df_clean = df[[
+    'Title', 
+    'description', 
+    'authors', 
+    'publisher',
+    'publishedDate', 
+    'categories', 
+    'ratingsCount']]
+    #almacenas ese df en un nuevo csv (localmente, el raiz del proyecto)
+
+    df_clean.to_csv(CSV_BOOK_DATA_CLEANED_PATH)
+
+    return df_clean
 
 
 #generar un nuevo CSV con la información de los libros, solo con las columnas de interés
@@ -51,3 +71,33 @@ def extract_book_rating(percent = PERCENT):
     df_new.to_csv(CSV_BOOK_RATING_CLEANED_PATH)
     print('Datset limpio...')
     return df_new
+
+
+def func_dani_2():    
+    df = pd.DataFrame()
+   
+    #leer el csv original CSV_BOOK_RATING_PATH
+    df2 = pd.read_csv(CSV_BOOK_RATING_PATH)
+    #eliminiar del df las columnas que no usamos
+    df_clean_rating = df2[[
+    'Id', 
+    'Title', 
+    'Price', 
+    'User_id', 
+    'profileName', 
+    'review/helpfulness',
+    'review/score', 
+    'review/time', 
+    'review/summary', 
+    'review/text']]
+    #almacenas ese df en un nuevo csv (localmente, el raiz del proyecto)
+
+    df_clean_rating.to_csv(CSV_BOOK_RATING_CLEANED_PATH)
+
+    return df_clean_rating
+
+
+
+if __name__ == "__main__":
+    extract_book_data()
+    extract_book_rating()
