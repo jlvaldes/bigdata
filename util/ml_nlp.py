@@ -1,0 +1,1 @@
+from global_variables import CSV_BOOK_RATING_PATH
