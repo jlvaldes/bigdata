@@ -5,6 +5,7 @@ from global_variables import CSV_BOOK_DATA_CLEANED_PATH
 from global_variables import CSV_BOOK_RATING_CLEANED_PATH
 from global_variables import PERCENT
 import os
+from data_quality import prepare_book_data
 
 #generar un nuevo CSV con la información de los libros, solo con las columnas de interés
 def extract_book_data( percent = PERCENT):
@@ -23,9 +24,8 @@ def extract_book_data( percent = PERCENT):
         print(f'Muestra aleatoria seleccionada. Filas seleccionadas: {num_filas_seleccion}')
 
 
-    print('Limpiando dataset...')
-    columnas = ['Title', 'description', 'publisher', 'categories', 'ratingsCount', 'publishedDate', 'authors'] 
-    df_new = df_data[columnas].copy()
+    print('Data quality check...')
+    df_new = prepare_book_data(df_data)
     df_new.to_csv(CSV_BOOK_DATA_CLEANED_PATH)
     print('Datset limpio...')
     return df_new

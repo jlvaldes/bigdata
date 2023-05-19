@@ -25,24 +25,6 @@ def task_extract_data():
     return df_data, df_dating
 
 
-@task(name='Data quality process')
-def task__data_quality(df_data: pd.DataFrame, df_rating: pd.DataFrame):
-    if not isinstance(df_data, pd.DataFrame):
-        raise TypeError("Se espera un objeto DataFrame de pandas")
-    
-
-    print('Iniciando proceso de limpieza de book data...')
-    df_data = prepare_book_data(df_data)
-    print('Limpieza finalizada de  book data...')
-
-    print('Iniciando proceso de limpieza de  book rating...')
-    df_rating = prepare_book_rating(df_rating)
-    print('Limpieza finalizada de book rating...')
-
-
-    return df_data, df_rating
-
-
 @task(name='Data transformation process')
 def task__data_transofrmation(df_data: pd.DataFrame, df_rating:pd.DataFrame, data_cleaned= True):
     print('Iniciando proceso de transformación de datos...')
@@ -64,8 +46,7 @@ def etl_flow():
     print('Iniciando flujo de ETL')
 
     df_book_data, df_book_rating = task_extract_data()
-    books, rating = task__data_quality(df_book_data, df_book_rating)
-    books_dtos, authors_dtos, ratings_dtos = task__data_transofrmation(df_data= books, df_rating= rating, data_cleaned= True)
+    books_dtos, authors_dtos, ratings_dtos = task__data_transofrmation(df_data= df_book_data, df_rating= df_book_rating, data_cleaned= True)
     task__data_load(books_dtos, authors_dtos, ratings_dtos)
 
     print('Flujo de ETL finalizado')
