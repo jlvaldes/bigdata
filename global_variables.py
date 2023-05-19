@@ -7,14 +7,15 @@ CSV_BOOK_RATING_CLEANED_PATH='../Datasets/books_rating_cleaned.csv'
 
 CSV_ANALYTICS_PATH='../Datasets/analytics.csv'
 
-DB_HOST=''
-DB_USER=''
-DB_PASS=''
-DB_PORT=''
+#Bases de datos AWS
+DB_HOST='database-raw-data.cp8fahi1m4nn.us-east-1.rds.amazonaws.com'
+DB_USER='rawdatabase'
+DB_PASS='rawdatabase'
+DB_PORT='5432'
 
 
-DW_HOST=''
-DW_USER=''
-DW_PASS=''
-DW_PORT=''
+DW_HOST='database-analytic-data.cp8fahi1m4nn.us-east-1.rds.amazonaws.com'
+DW_USER='analyticdatabase'
+DW_PASS='analyticdatabase'
+DW_PORT='5432'
 
