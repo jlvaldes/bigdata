@@ -6,4 +6,5 @@ conda install -c conda-force python=3.10
 conda install -c conda-forge pandas
 conda install -c conda-forge prefect
 conda install -c conda-force ipykernel
-conda install -c conda-force sqlalchemy
+conda install sqlalchemy
+pip install psycopg2-binary

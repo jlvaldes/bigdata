@@ -1,3 +1,6 @@
+#ETL para la carga inicial de toda la data a la base de datos
+
+
 from prefect import flow, task
 from data_extraction import extract_book_data
 from data_extraction import extract_book_rating
@@ -7,7 +10,6 @@ from data_transformation import transform_data
 from data_load import load_data_analytics
 from data_load import load_data_oring
 import pandas as pd
-
 
 @task(name='Data extraction process')
 def task_extract_data():
