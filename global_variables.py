@@ -1,4 +1,4 @@
-PERCENT = 10
+PERCENT = 1
 CSV_BOOK_DATA_PATH='../../Datasets/books_data.csv'
 CSV_BOOK_RATING_PATH='../../Datasets/books_rating.csv'
 

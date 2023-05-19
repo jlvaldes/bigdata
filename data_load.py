@@ -15,24 +15,25 @@ def load_data_oring(books_dtos_list, authors_dtos_list, ratings_dtos_list):
 
     print('Iniciando proceso de carga...')
     
+    delete_all_data('author_book')
+    delete_all_data('rating')
     delete_all_data('book')
+
     print("[INFO] Cargar libros...")
     session.add_all(books_dtos_list)
     session.commit()
     print("[INFO] Libros cargados...")
 
-    delete_all_data('author_book')
     print("[INFO] Cargar autores...")
     session.add_all(authors_dtos_list)
     session.commit()
     print("[INFO] Autores cargados...")
 
-    delete_all_data('rating')
+    
     print("[INFO] Cargar ratings...")
     session.add_all(ratings_dtos_list)
     session.commit()
     print("[INFO] Ratings cargados...")
-
 
     session.close()
     print("Carga finalizada...")
