@@ -13,9 +13,10 @@ def prepare_book_data(df: pd.DataFrame):
     columas_eliminar = ["image", "previewLink", "infoLink"]
     df_cleaned=df_cleaned.drop(columns=columas_eliminar, axis=1)
     
-    #Extaer año y convertir nulls en 0
+    #Extaer año, convertir nulls en 0 y cambiar el tipo a integer
     df_cleaned['publishedDate'] = df_cleaned['publishedDate'].str.extract(r'(\d{4})')
     df_cleaned['publishedDate'] = df_cleaned['publishedDate'].fillna('0')
+    df_cleaned['publishedDate']=df_cleaned['publishedDate'].astype(int)
     
     #Función para eliminar caracteres innecesarios
     def quitar_corchetes(valor):
@@ -25,12 +26,14 @@ def prepare_book_data(df: pd.DataFrame):
             return [v.strip("''") for v in valor]
         else:
             return valor
+            
     #Eliminación de caracteres para authors y categories
     df_cleaned['authors'] = df_cleaned['authors'].apply(quitar_corchetes)
     df_cleaned['categories'] = df_cleaned['categories'].apply(quitar_corchetes)
     
     #Retornar CSV
     df_cleaned.to_csv(CSV_BOOK_DATA_CLEANED_PATH, index=False)
+    df_cleaned.info()
     
     return df_cleaned
 
@@ -38,12 +41,5 @@ def prepare_book_data(df: pd.DataFrame):
 def prepare_book_rating(df: pd.DataFrame):
     if not isinstance(df, pd.DataFrame):
         raise TypeError("Se espera un objeto DataFrame de pandas")
-    
-    print('[TODO] Limpieza de datos')
 
     return df
-
-df=pd.read_csv('../Datasets/books_data.csv')
-prepare_book_data(df)
-
-
