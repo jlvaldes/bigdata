@@ -4,10 +4,7 @@
 from prefect import flow, task
 from data_extraction import extract_book_data
 from data_extraction import extract_book_rating
-from data_quality import prepare_book_data
-from data_quality import prepare_book_rating
 from data_transformation import transform_data
-from data_load import load_data_analytics
 from data_load import load_data_oring
 import pandas as pd
 

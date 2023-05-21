@@ -6,6 +6,13 @@ from global_variables import CSV_BOOK_RATING_CLEANED_PATH
 from global_variables import PERCENT
 import os
 from data_quality import prepare_book_data
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import func
+from dtos import get_engine
+from dtos import Book, Rating, AuthorBook, RatingsAnalytics
+import numpy as np
+from ml_nlp import tokenization
+
 
 #generar un nuevo CSV con la información de los libros, solo con las columnas de interés
 def extract_book_data( percent = PERCENT):
@@ -31,25 +38,6 @@ def extract_book_data( percent = PERCENT):
     return df_new
 
 
-def func_dani():
-    #leer el csv original CSV_BOOK_DATA_PATH
-    df = pd.read_csv(CSV_BOOK_DATA_PATH)
-    #eliminiar del df las columnas que no usamos
-    df_clean = df[[
-    'Title', 
-    'description', 
-    'authors', 
-    'publisher',
-    'publishedDate', 
-    'categories', 
-    'ratingsCount']]
-    #almacenas ese df en un nuevo csv (localmente, el raiz del proyecto)
-
-    df_clean.to_csv(CSV_BOOK_DATA_CLEANED_PATH)
-
-    return df_clean
-
-
 #generar un nuevo CSV con la información de los libros, solo con las columnas de interés
 def extract_book_rating(percent = PERCENT):
     print('Cargar en memoria dataset de ratings...')
@@ -73,31 +61,24 @@ def extract_book_rating(percent = PERCENT):
     return df_new
 
 
-def func_dani_2():    
-    df = pd.DataFrame()
-   
-    #leer el csv original CSV_BOOK_RATING_PATH
-    df2 = pd.read_csv(CSV_BOOK_RATING_PATH)
-    #eliminiar del df las columnas que no usamos
-    df_clean_rating = df2[[
-    'Id', 
-    'Title', 
-    'Price', 
-    'User_id', 
-    'profileName', 
-    'review/helpfulness',
-    'review/score', 
-    'review/time', 
-    'review/summary', 
-    'review/text']]
-    #almacenas ese df en un nuevo csv (localmente, el raiz del proyecto)
+def create_analytics():
+    engine = get_engine()
+    Session = sessionmaker(bind = engine)
+    session = Session()
 
-    df_clean_rating.to_csv(CSV_BOOK_RATING_CLEANED_PATH)
+    result = session.query(Rating.title, Rating.text, Rating.score).limit(100)
+    ratings = [RatingsAnalytics(title=tit, text=txt, score=sc) for tit, txt, sc in result]
+    datos = [
+        {"title": obj.title, "text": obj.text, "score": obj.score}
+        for obj in ratings]
+    df = pd.DataFrame(datos)
+    df['category'] =   np.where(df['score'] < 3, 'negativa', 'positiva')
 
-    return df_clean_rating
+    doc_squeeze = df['text'].squeeze()
+    df['tokens'] = tokenization(doc_squeeze)
+    print(df['tokens'])
 
 
+if __name__ == '__main__':
+    create_analytics()
 
-if __name__ == "__main__":
-    extract_book_data()
-    extract_book_rating()

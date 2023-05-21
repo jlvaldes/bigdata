@@ -9,4 +9,6 @@ conda install -c conda-force ipykernel
 conda install -c conda-force sqlalchemyconda activate 
 conda install sqlalchemy
 pip install psycopg2-binary
-
+pip install numpy
+pip install nltk
+pip install scikit-learn

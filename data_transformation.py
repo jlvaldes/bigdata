@@ -3,7 +3,6 @@ from global_variables import CSV_BOOK_DATA_CLEANED_PATH, CSV_BOOK_DATA_PATH
 from global_variables import CSV_BOOK_RATING_CLEANED_PATH, CSV_BOOK_RATING_PATH
 from dtos import Book, Rating, AuthorBook
 import os
-from dtos import get_engine, delete_all_data
 from sqlalchemy.orm import sessionmaker
 
 
@@ -70,20 +69,6 @@ def to_dtos(data_cleaned = False, df_data = None, df_rating = None):
         )
 
     return books, authors, ratings
-
-
-def load():
-    engine = get_engine()
-    Session = sessionmaker(bind=engine)
-    session = Session()
-
-    books, authors, ratings = to_dtos()
-    delete_all_data('book')
-    print("Cargar libros...")
-    session.add_all(books[:10])
-    session.commit()
-    session.close()
-    print("Libros cargados...")
 
 
 #Retorna una lista de objetos DTOs para cargar a la base de datos 

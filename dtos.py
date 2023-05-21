@@ -82,5 +82,28 @@ def delete_all_data(table_name):
     print(f'Tabla {table_name} vacía...')
 
 
+class CategoryAnalytics (Base):
+    __tablename__= "category_analytic"
+    id = Column(Integer, primary_key=True)
+    publisher = Column(String)
+    categories = Column(String)
+    count_ratings = Column(Float)
+    def __init__(self, publisher, categories, count_ratings):
+        self.publisher = publisher
+        self.categories = categories
+        self.count_ratings = count_ratings
+
+class RatingsAnalytics (Base):
+    __tablename__= "ratings_analytics"
+    id = Column(Integer, primary_key=True)
+    title = Column(String)
+    text = Column(String)
+    score = Column(Float)
+    def __init__(self, title, text, score):
+        self.title = title
+        self.text = text
+        self.score = score
+
+
 if __name__ == '__main__':
     create_tables()
