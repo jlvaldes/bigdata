@@ -12,3 +12,5 @@ pip install psycopg2-binary
 pip install numpy
 pip install nltk
 pip install scikit-learn
+pip install matplotlib
+pip install ipython
