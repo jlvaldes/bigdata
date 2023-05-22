@@ -1,8 +1,8 @@
 PERCENT = 100
-CSV_BOOK_DATA_PATH='../../Datasets/books_data.csv'
+CSV_BOOK_DATA_PATH='../Datasets/books_data.csv'
 CSV_BOOK_RATING_PATH='../../Datasets/books_rating.csv'
 
-CSV_BOOK_DATA_CLEANED_PATH='../../Datasets/books_data_cleaned.csv'
+CSV_BOOK_DATA_CLEANED_PATH='../Datasets/books_data_cleaned.csv'
 CSV_BOOK_RATING_CLEANED_PATH='../../Datasets/books_rating_cleaned.csv'
 
 CSV_ANALYTICS_PATH='../../Datasets/analytics.csv'
