@@ -14,3 +14,4 @@ pip install nltk
 pip install scikit-learn
 pip install matplotlib
 pip install ipython
+pip install wordcloud
